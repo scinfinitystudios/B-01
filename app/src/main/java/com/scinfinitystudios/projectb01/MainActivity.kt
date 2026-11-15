@@ -246,12 +246,54 @@ private fun SensitivityHome() {
             }
         }
         item {
+            Text("ELIGE TU PLAN", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 20.sp)
+            Text("Empieza gratis y pasa a Premium cuando las funciones avanzadas estén disponibles.", color = Muted, fontSize = 12.sp)
+        }
+        item {
             Card(colors = CardDefaults.cardColors(containerColor = Panel), shape = RoundedCornerShape(18.dp)) {
-                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(7.dp)) {
-                    Text("PLAN GRATUITO", color = Accent, fontWeight = FontWeight.Bold)
-                    Text("Recomendaciones, ajustes manuales y perfiles básicos estarán disponibles sin pagar.", color = Color.White, fontSize = 13.sp)
-                    Text("PREMIUM · PRÓXIMAMENTE", color = Muted, fontWeight = FontWeight.Bold, fontSize = 12.sp)
-                    Text("Estamos preparando herramientas avanzadas opcionales. No hay compras ni cobros habilitados en esta versión.", color = Muted, fontSize = 12.sp)
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Text("GRATUITO", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 17.sp)
+                        Text("S/ 0", color = Accent, fontWeight = FontWeight.ExtraBold, fontSize = 22.sp)
+                    }
+                    Text("Para comenzar a configurar y probar tu sensibilidad.", color = Muted, fontSize = 12.sp)
+                    PlanFeature("Catálogo de dispositivos y búsqueda")
+                    PlanFeature("Recomendaciones por estilo")
+                    PlanFeature("Ajuste manual de todas las sensibilidades")
+                    PlanFeature("Guardar tu configuración básica")
+                    Text("TU PLAN ACTUAL", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
+                }
+            }
+        }
+        item {
+            Card(
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF29202A)),
+                shape = RoundedCornerShape(18.dp)
+            ) {
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Column {
+                            Text("SENSITIVITY PRO", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 17.sp)
+                            Text("PLAN PREMIUM", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
+                        }
+                        Text("PRÓXIMAMENTE", color = Accent, fontWeight = FontWeight.Bold, fontSize = 10.sp)
+                    }
+                    Text("Para jugadores que quieren llevar un registro y afinar sus ajustes.", color = Color.White, fontSize = 12.sp)
+                    PlanFeature("Perfiles personalizados múltiples")
+                    PlanFeature("Calibración guiada paso a paso")
+                    PlanFeature("Historial de ajustes y resultados")
+                    PlanFeature("Herramientas avanzadas de personalización")
+                    PlanFeature("Nuevas funciones Premium a medida que se publiquen")
+                    Text("Precio y modalidad de suscripción por definir.", color = Muted, fontSize = 12.sp)
+                    Button(
+                        onClick = {
+                            Toast.makeText(context, "El plan Premium todavía no está disponible. No se realizará ningún cobro.", Toast.LENGTH_LONG).show()
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Premium próximamente")
+                    }
+                    Text("Las funciones de esta lista son parte de la hoja de ruta; aún no están habilitadas ni se cobran en esta versión.", color = Muted, fontSize = 11.sp)
                 }
             }
             Text(
@@ -274,5 +316,14 @@ private fun SensitivitySlider(label: String, value: Float, onValueChange: (Float
             }
             Slider(value = value, onValueChange = onValueChange, valueRange = 0f..200f)
         }
+    }
+}
+
+
+@Composable
+private fun PlanFeature(text: String) {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text("✓", color = Accent, fontWeight = FontWeight.Bold)
+        Text(text, color = Color.White, fontSize = 12.sp)
     }
 }
