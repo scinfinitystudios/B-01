@@ -317,7 +317,7 @@ private fun SensitivityHome() {
         }
         item {
             Text("ELIGE TU PLAN", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 20.sp)
-            Text("Empieza gratis y pasa a Premium cuando las funciones avanzadas estén disponibles.", color = Muted, fontSize = 12.sp)
+            Text("Plan gratuito con publicidad limitada. Premium cuesta US$1 al mes y elimina todos los anuncios.", color = Muted, fontSize = 12.sp)
         }
         item {
             Card(colors = CardDefaults.cardColors(containerColor = Panel), shape = RoundedCornerShape(18.dp)) {
@@ -331,6 +331,8 @@ private fun SensitivityHome() {
                     PlanFeature("Recomendaciones por estilo")
                     PlanFeature("Ajuste manual de todas las sensibilidades")
                     PlanFeature("Guardar tu configuración básica")
+                    PlanFeature("Máximo 1 anuncio intersticial por sesión")
+                    Text("Los anuncios se mostrarán en momentos naturales, nunca al abrir cada pantalla ni al tocar cada botón.", color = Muted, fontSize = 11.sp)
                     Text("TU PLAN ACTUAL", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
                 }
             }
@@ -346,7 +348,7 @@ private fun SensitivityHome() {
                             Text("SENSITIVITY PRO", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 17.sp)
                             Text("PLAN PREMIUM", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
                         }
-                        Text("MODO DE PRUEBA", color = Accent, fontWeight = FontWeight.Bold, fontSize = 10.sp)
+                        Text("US$1 / MES", color = Accent, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                     }
                     Text("Para jugadores que quieren llevar un registro y afinar sus ajustes.", color = Color.White, fontSize = 12.sp)
                     PlanFeature("Perfiles personalizados múltiples")
@@ -354,9 +356,10 @@ private fun SensitivityHome() {
                     PlanFeature("Historial de ajustes y resultados")
                     PlanFeature("Herramientas avanzadas de personalización")
                     PlanFeature("Nuevas funciones Premium a medida que se publiquen")
-                    Text("Los perfiles múltiples ya se pueden probar sin costo. Las demás herramientas avanzadas se incorporarán progresivamente.", color = Muted, fontSize = 12.sp)
-                    Text("PREMIUM EN PRUEBA · SIN COBROS", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
-                    Text("Esta versión permite probar la gestión de perfiles. No hay suscripciones ni pagos activos.", color = Muted, fontSize = 11.sp)
+                    PlanFeature("Sin anuncios")
+                    Text("Precio previsto: US$1 al mes. Los perfiles múltiples ya se pueden probar en esta versión; la calibración guiada, el historial y otras herramientas avanzadas se incorporarán progresivamente.", color = Muted, fontSize = 12.sp)
+                    Text("PAGOS Y PUBLICIDAD AÚN NO ACTIVOS", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
+                    Text("La suscripción requiere Google Play Billing y los anuncios requieren Google AdMob. Se activarán después de configurar las cuentas y probar las compras y los anuncios.", color = Muted, fontSize = 11.sp)
                 }
             }
             Text(
