@@ -113,8 +113,8 @@ private fun SensitivityHome() {
         val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as android.view.WindowManager
         windowManager.defaultDisplay.refreshRate.toInt()
     }
-    var device by remember { mutableStateOf(phoneName) }
-    var style by remember { mutableStateOf("Equilibrado") }
+    var device by remember { mutableStateOf(preferences.getString("device", phoneName) ?: phoneName) }
+    var style by remember { mutableStateOf(preferences.getString("style", "Equilibrado") ?: "Equilibrado") }
     var general by remember { mutableFloatStateOf(preferences.getFloat("general", 95f)) }
     var redDot by remember { mutableFloatStateOf(preferences.getFloat("redDot", 90f)) }
     var scope2x by remember { mutableFloatStateOf(preferences.getFloat("scope2x", 85f)) }
