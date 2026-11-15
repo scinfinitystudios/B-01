@@ -4,11 +4,11 @@ Aplicación Android independiente para ayudar a jugadores a crear, probar y ajus
 
 ## Enfoque del producto
 - Público general: no está limitada a un único teléfono.
-- Catálogo inicial de modelos Samsung, Xiaomi/Redmi, POCO, Motorola, OPPO, realme, vivo, Infinix, Tecno, Huawei y HONOR.
-- Búsqueda por texto con sugerencias y entrada manual para modelos no incluidos.
+- Catálogo inicial amplio con más de 130 modelos representativos de Samsung, Xiaomi/Redmi, POCO, Motorola, OPPO, realme, vivo, Infinix, Tecno, Huawei, HONOR, OnePlus, Google Pixel, ASUS y ZTE.
+- Búsqueda por texto con sugerencias y entrada manual para modelos no incluidos. El catálogo es una selección inicial ampliable, no una lista exhaustiva de todos los teléfonos del mercado.
 - Perfiles por estilo: preciso, equilibrado y agresivo.
 - Controles editables: General, Punto rojo, Mira 2X, Mira 4X, Francotirador y Vista libre.
-- Modelo freemium previsto: funciones básicas gratuitas y herramientas Premium opcionales en una etapa posterior. Esta versión no tiene pagos habilitados.
+- Modelo freemium: las recomendaciones y ajustes básicos son gratuitos; funciones Premium opcionales se planifican para una etapa posterior. Esta versión no tiene pagos habilitados.
 
 ## Importante sobre las recomendaciones
 Los valores actuales son puntos de partida ilustrativos basados en el estilo elegido. El nombre del dispositivo sirve para identificarlo, pero no implica que la app mida automáticamente su hardware ni que exista una sensibilidad universal óptima. El usuario debe probar y ajustar los controles.
