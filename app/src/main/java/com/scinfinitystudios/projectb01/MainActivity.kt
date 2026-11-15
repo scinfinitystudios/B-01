@@ -54,7 +54,30 @@ private val deviceCatalog = listOf(
     "vivo Y27", "vivo Y36", "vivo V30",
     "Infinix Hot 40", "Infinix Hot 50", "Infinix Note 40", "Infinix GT 20 Pro",
     "Tecno Spark 20", "Tecno Spark 20 Pro", "Tecno Pova 6", "Tecno Camon 30",
-    "Huawei nova 11", "Huawei nova 12", "HONOR X7b", "HONOR X8b", "HONOR 200"
+    "Huawei nova 11", "Huawei nova 12", "HONOR X7b", "HONOR X8b", "HONOR 200",
+    "Samsung Galaxy A05s", "Samsung Galaxy A14", "Samsung Galaxy A16", "Samsung Galaxy A24",
+    "Samsung Galaxy A34", "Samsung Galaxy M14", "Samsung Galaxy M15", "Samsung Galaxy S21",
+    "Samsung Galaxy S22", "Samsung Galaxy S24 FE",
+    "Xiaomi Redmi 12C", "Xiaomi Redmi 13", "Xiaomi Redmi 14C", "Xiaomi Redmi Note 12",
+    "Xiaomi Redmi Note 12 Pro", "Xiaomi Redmi Note 14 Pro+", "Xiaomi 13", "Xiaomi 13 Pro",
+    "Xiaomi 14 Pro", "Xiaomi 15",
+    "POCO C75", "POCO M6", "POCO X5 Pro", "POCO X6", "POCO X7", "POCO X7 Pro",
+    "POCO F5", "POCO F7",
+    "Motorola Moto E13", "Motorola Moto E14", "Motorola Moto G14", "Motorola Moto G34",
+    "Motorola Moto G55", "Motorola Edge 40", "Motorola Edge 60",
+    "OPPO A18", "OPPO A60", "OPPO A78", "OPPO Reno 10", "OPPO Reno 13", "OPPO Find X8",
+    "realme C53", "realme C61", "realme C65", "realme 11", "realme 13", "realme 13 Pro",
+    "realme GT 6", "realme GT 7",
+    "vivo Y17s", "vivo Y28", "vivo Y38", "vivo V29", "vivo V40", "vivo V50",
+    "vivo X100", "vivo X200",
+    "Infinix Smart 8", "Infinix Smart 9", "Infinix Note 30", "Infinix Note 50",
+    "Tecno Spark 30", "Tecno Spark 40", "Tecno Pova 5", "Tecno Pova 7", "Tecno Camon 40",
+    "Huawei nova 13", "Huawei Pura 70", "HONOR X6b", "HONOR X9b", "HONOR X9c",
+    "HONOR 90", "HONOR Magic 6", "HONOR Magic 7",
+    "OnePlus Nord CE 3", "OnePlus Nord CE 4", "OnePlus Nord 4", "OnePlus 12", "OnePlus 13",
+    "Google Pixel 7", "Google Pixel 8", "Google Pixel 8a", "Google Pixel 9",
+    "ASUS ROG Phone 7", "ASUS ROG Phone 8", "ZTE Nubia Neo 2", "ZTE Nubia Neo 3",
+    "ZTE RedMagic 9", "ZTE RedMagic 10"
 )
 
 class MainActivity : ComponentActivity() {
