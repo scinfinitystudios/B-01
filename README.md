@@ -8,7 +8,7 @@ Aplicación Android independiente para ayudar a jugadores a crear, probar y ajus
 - Búsqueda por texto con sugerencias y entrada manual para modelos no incluidos. El catálogo es una selección inicial ampliable, no una lista exhaustiva de todos los teléfonos del mercado.
 - Perfiles por estilo: preciso, equilibrado y agresivo.
 - Controles editables: General, Punto rojo, Mira 2X, Mira 4X, Francotirador y Vista libre.
-- Modelo freemium: las recomendaciones y ajustes básicos son gratuitos; funciones Premium opcionales se planifican para una etapa posterior. Esta versión no tiene pagos habilitados.
+- Modelo freemium: plan Gratuito con catálogo, recomendaciones por estilo, ajustes manuales y guardado básico. La interfaz también presenta el plan Premium y sus funciones previstas: perfiles múltiples, calibración guiada, historial y personalización avanzada. Estas funciones Premium están en la hoja de ruta y todavía no están habilitadas. No hay precio definido, suscripciones ni cobros en esta versión.
 
 ## Importante sobre las recomendaciones
 Los valores actuales son puntos de partida ilustrativos basados en el estilo elegido. El nombre del dispositivo sirve para identificarlo, pero no implica que la app mida automáticamente su hardware ni que exista una sensibilidad universal óptima. El usuario debe probar y ajustar los controles.
