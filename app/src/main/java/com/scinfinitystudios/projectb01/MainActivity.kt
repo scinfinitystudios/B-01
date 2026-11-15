@@ -279,7 +279,7 @@ private fun SensitivityHome(billingManager: BillingManager) {
                     ) { Text("Guardar nuevo perfil") }
                     if (savedProfiles.isNotEmpty()) {
                         Text("Toca un perfil para cargarlo:", color = Muted, fontSize = 12.sp)
-                        savedProfiles.forEach { name ->
+                        savedProfiles.take(if (isPremium) savedProfiles.size else 1).forEach { name ->
                             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                                 Text(
                                     name + if (selectedProfile == name) " · ACTIVO" else "",
@@ -377,6 +377,7 @@ private fun SensitivityHome(billingManager: BillingManager) {
                     PlanFeature("Herramientas avanzadas de personalización")
                     PlanFeature("Nuevas funciones Premium a medida que se publiquen")
                     PlanFeature("Sin anuncios")
+                    Text("Perfiles ilimitados ya están habilitados con Premium. La calibración guiada, el historial y las herramientas avanzadas todavía están en desarrollo.", color = Muted, fontSize = 11.sp)
                     Text("Suscripción mensual con renovación automática. El precio final y la moneda se muestran en la pantalla segura de Google Play. *US$1/mes es el precio objetivo.", color = Muted, fontSize = 12.sp)
                     if (isPremium) {
                         Text("Tu suscripción está activa en este dispositivo.", color = Color(0xFF79D69A), fontWeight = FontWeight.Bold, fontSize = 12.sp)
