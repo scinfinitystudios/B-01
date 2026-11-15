@@ -158,7 +158,7 @@ class BillingManager(context: Context) {
         }
     }
 
-    private fun handlePurchaseUpdate(result: BillingResult, purchases: MutableList<Purchase>?) {
+    private fun handlePurchaseUpdate(result: BillingResult, purchases: List<Purchase>?) {
         when (result.responseCode) {
             BillingClient.BillingResponseCode.OK -> {
                 purchases.orEmpty().forEach { processPurchase(it) }
