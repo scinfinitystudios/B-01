@@ -255,11 +255,11 @@ private fun SensitivityHome(billingManager: BillingManager) {
                     )
                     Button(
                         onClick = {
-                            if (!isPremium && savedProfiles.isNotEmpty()) {
+                            val name = profileName.trim().ifBlank { "Perfil ${savedProfiles.size + 1}" }
+                            if (!isPremium && savedProfiles.isNotEmpty() && !savedProfiles.contains(name)) {
                                 Toast.makeText(context, "El plan Gratis permite guardar un perfil. Suscríbete a Premium para guardar perfiles ilimitados.", Toast.LENGTH_LONG).show()
                                 return@Button
                             }
-                            val name = profileName.trim().ifBlank { "Perfil ${savedProfiles.size + 1}" }
                             preferences.edit()
                                 .putFloat("profile.$name.general", general)
                                 .putFloat("profile.$name.redDot", redDot)
@@ -353,7 +353,7 @@ private fun SensitivityHome(billingManager: BillingManager) {
                     PlanFeature("Guardar tu configuración básica")
                     PlanFeature("Máximo 1 anuncio intersticial por sesión")
                     Text("Los anuncios se mostrarán en momentos naturales, nunca al abrir cada pantalla ni al tocar cada botón.", color = Muted, fontSize = 11.sp)
-                    Text("TU PLAN ACTUAL", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
+                    Text(if (isPremium) "PLAN GRATUITO DISPONIBLE" else "TU PLAN ACTUAL", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
                 }
             }
         }
