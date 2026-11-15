@@ -53,7 +53,12 @@ class BillingManager(context: Context) {
         .build()
 
     fun connect() {
-        if (isReady || isConnecting) return
+        if (isReady) {
+            queryPremiumProduct()
+            refreshPurchases()
+            return
+        }
+        if (isConnecting) return
         isConnecting = true
         billingClient.startConnection(object : com.android.billingclient.api.BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
