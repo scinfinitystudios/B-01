@@ -1,5 +1,6 @@
 package com.scinfinitystudios.projectb01
 
+import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Build
@@ -87,20 +88,35 @@ private val deviceCatalog = listOf(
 )
 
 class MainActivity : ComponentActivity() {
+    private lateinit var billingManager: BillingManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        billingManager = BillingManager(applicationContext)
         setContent {
             MaterialTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = Night) {
-                    SensitivityHome()
+                    SensitivityHome(billingManager)
                 }
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (::billingManager.isInitialized) billingManager.connect()
+    }
+
+    override fun onDestroy() {
+        if (::billingManager.isInitialized) billingManager.endConnection()
+        super.onDestroy()
+    }
 }
 
 @Composable
-private fun SensitivityHome() {
+private fun SensitivityHome(billingManager: BillingManager) {
+    val isPremium = billingManager.isPremium
+
     val context = LocalContext.current
     val preferences = remember { context.getSharedPreferences("b01_profiles", Context.MODE_PRIVATE) }
     val phoneName = remember { (Build.MANUFACTURER + " " + Build.MODEL).trim() }
@@ -228,7 +244,7 @@ private fun SensitivityHome() {
         item {
             Card(colors = CardDefaults.cardColors(containerColor = Panel), shape = RoundedCornerShape(18.dp)) {
                 Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(9.dp)) {
-                    Text("PERFILES GUARDADOS · PREMIUM EN PRUEBA", color = Accent, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                    Text(if (isPremium) "PERFILES GUARDADOS · PREMIUM ACTIVO" else "PERFILES GUARDADOS", color = Accent, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                     OutlinedTextField(
                         value = profileName,
                         onValueChange = { profileName = it.take(30) },
@@ -239,6 +255,10 @@ private fun SensitivityHome() {
                     )
                     Button(
                         onClick = {
+                            if (!isPremium && savedProfiles.isNotEmpty()) {
+                                Toast.makeText(context, "El plan Gratis permite guardar un perfil. Suscríbete a Premium para guardar perfiles ilimitados.", Toast.LENGTH_LONG).show()
+                                return@Button
+                            }
                             val name = profileName.trim().ifBlank { "Perfil ${savedProfiles.size + 1}" }
                             preferences.edit()
                                 .putFloat("profile.$name.general", general)
@@ -348,18 +368,38 @@ private fun SensitivityHome() {
                             Text("SENSITIVITY PRO", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 17.sp)
                             Text("PLAN PREMIUM", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
                         }
-                        Text("US$1 / MES", color = Accent, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                        Text(billingManager.localizedPrice ?: "US$1 / MES*", color = Accent, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                     }
                     Text("Para jugadores que quieren llevar un registro y afinar sus ajustes.", color = Color.White, fontSize = 12.sp)
-                    PlanFeature("Perfiles personalizados múltiples")
+                    PlanFeature("Perfiles personalizados ilimitados")
                     PlanFeature("Calibración guiada paso a paso")
                     PlanFeature("Historial de ajustes y resultados")
                     PlanFeature("Herramientas avanzadas de personalización")
                     PlanFeature("Nuevas funciones Premium a medida que se publiquen")
                     PlanFeature("Sin anuncios")
-                    Text("Precio previsto: US$1 al mes. Los perfiles múltiples ya se pueden probar en esta versión; la calibración guiada, el historial y otras herramientas avanzadas se incorporarán progresivamente.", color = Muted, fontSize = 12.sp)
-                    Text("PAGOS Y PUBLICIDAD AÚN NO ACTIVOS", color = Accent, fontWeight = FontWeight.Bold, fontSize = 11.sp)
-                    Text("La suscripción requiere Google Play Billing y los anuncios requieren Google AdMob. Se activarán después de configurar las cuentas y probar las compras y los anuncios.", color = Muted, fontSize = 11.sp)
+                    Text("Suscripción mensual con renovación automática. El precio final y la moneda se muestran en la pantalla segura de Google Play. *US$1/mes es el precio objetivo.", color = Muted, fontSize = 12.sp)
+                    if (isPremium) {
+                        Text("Tu suscripción está activa en este dispositivo.", color = Color(0xFF79D69A), fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                    } else {
+                        Button(
+                            onClick = {
+                                val activity = context as? Activity
+                                if (activity != null) billingManager.launchPurchase(activity)
+                                else Toast.makeText(context, "No se pudo abrir Google Play desde esta pantalla.", Toast.LENGTH_SHORT).show()
+                            },
+                            enabled = billingManager.canPurchase,
+                            modifier = Modifier.fillMaxWidth()
+                        ) { Text(if (billingManager.canPurchase) "Suscribirme a Premium" else "Suscripción no disponible todavía") }
+                    }
+                    Button(
+                        onClick = { billingManager.refreshPurchases() },
+                        modifier = Modifier.fillMaxWidth()
+                    ) { Text("Restaurar / comprobar suscripción") }
+                    if (billingManager.statusMessage.isNotBlank()) {
+                        Text(billingManager.statusMessage, color = Muted, fontSize = 11.sp)
+                    }
+                    Text("Producto de Google Play: premium_monthly · Base plan mensual con renovación automática. Debes crearlo y activarlo en Play Console antes de vender la suscripción.", color = Muted, fontSize = 11.sp)
+                    Text("La verificación segura del token en un servidor y AdMob siguen pendientes antes del lanzamiento público.", color = Muted, fontSize = 11.sp)
                 }
             }
             Text(
